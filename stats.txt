@@ -1,0 +1,2 @@
+30/01 > joyclip (audio,transcribe,translate,emotions,graph) > 77.43 secs   x1.16 
+31/01 > joyclip (audio,transcribe,translate,emotions,graph) > 62.57 secs   x0.93 (-0.23)
