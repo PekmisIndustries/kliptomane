@@ -148,7 +148,8 @@ def clean_text(text):
 
 
 # Paths and parameters
-video_path = "clip.mp4"  # Replace with your video path
+# video_path = "clip.mp4"  # Replace with your video path
+video_path = "bigclip.mp4"
 audio_path = "temp_audio.wav"
 output_file = "transcription.txt"
 model_name = "large"  # Whisper model size: tiny, base, small, medium, large

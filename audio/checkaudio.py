@@ -74,8 +74,8 @@ def save_scores_to_file(scored_segments, output_file):
             f.write(f"{time:.2f}, {score}\n")
 
 # Paths and parameters
-video_path = "clip.mp4"
-# video_path = "bigclip.mp4"
+# video_path = "clip.mp4"
+video_path = "bigclip.mp4"
 audio_path = "temp_audio.wav"
 output_file = "scored_segments.txt"
 threshold_variation = 0.4 

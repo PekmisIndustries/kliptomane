@@ -1,15 +1,11 @@
 # Exclure les fichiers audio specifiques et dossiers
 audio/old/
-audio/bigclip.mp4
-audio/clip.mp4
-audio/pclip.mp4
 
 # Exclure les modeles IA et autres dossiers specifiques dans transcription
 transcription/sentiment/models--j-hartmann--emotion-english-distilroberta-base/
 transcription/onnxmodels/
 transcription/test/
 transcription/translation/models--facebook--nllb-200-distilled-600M/
-transcription/clip.mp4
 
 # Exclure les fichiers Python generes
 __pycache__/
@@ -20,6 +16,7 @@ __pycache__/
 # Exclure les environnements virtuels
 venv/
 .env/
+face/venv/
 
 # Exclure les fichiers de logs et caches
 *.log
@@ -28,3 +25,9 @@ venv/
 .idea/
 .vscode/
 *.swp
+*.mp4
+*.mp3
+*.wav
+*.png
+face/scored_intervals.txt
+face/face_scores.json
