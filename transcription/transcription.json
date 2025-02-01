@@ -1,0 +1,292 @@
+[
+    {
+        "id": 0,
+        "seek": 0,
+        "start": 0.0,
+        "end": 2.0,
+        "text": " 1.5 kg of chicken breast",
+        "tokens": [
+            50365,
+            502,
+            13,
+            20,
+            15696,
+            295,
+            4662,
+            9934,
+            50465
+        ],
+        "temperature": 0.0,
+        "avg_logprob": -0.27580956545743074,
+        "compression_ratio": 8.487179487179487,
+        "no_speech_prob": 0.7925037741661072
+    },
+    {
+        "id": 1,
+        "seek": 0,
+        "start": 2.0,
+        "end": 4.0,
+        "text": " 1.5 kg of chicken breast",
+        "tokens": [
+            50465,
+            502,
+            13,
+            20,
+            15696,
+            295,
+            4662,
+            9934,
+            50565
+        ],
+        "temperature": 0.0,
+        "avg_logprob": -0.27580956545743074,
+        "compression_ratio": 8.487179487179487,
+        "no_speech_prob": 0.7925037741661072
+    },
+    {
+        "id": 2,
+        "seek": 0,
+        "start": 4.0,
+        "end": 6.0,
+        "text": " 1.5 kg of chicken breast",
+        "tokens": [
+            50565,
+            502,
+            13,
+            20,
+            15696,
+            295,
+            4662,
+            9934,
+            50665
+        ],
+        "temperature": 0.0,
+        "avg_logprob": -0.27580956545743074,
+        "compression_ratio": 8.487179487179487,
+        "no_speech_prob": 0.7925037741661072
+    },
+    {
+        "id": 3,
+        "seek": 0,
+        "start": 6.0,
+        "end": 8.0,
+        "text": " 1.5 kg of chicken breast",
+        "tokens": [
+            50665,
+            502,
+            13,
+            20,
+            15696,
+            295,
+            4662,
+            9934,
+            50765
+        ],
+        "temperature": 0.0,
+        "avg_logprob": -0.27580956545743074,
+        "compression_ratio": 8.487179487179487,
+        "no_speech_prob": 0.7925037741661072
+    },
+    {
+        "id": 4,
+        "seek": 0,
+        "start": 8.0,
+        "end": 10.0,
+        "text": " 1.5 kg of chicken breast",
+        "tokens": [
+            50765,
+            502,
+            13,
+            20,
+            15696,
+            295,
+            4662,
+            9934,
+            50865
+        ],
+        "temperature": 0.0,
+        "avg_logprob": -0.27580956545743074,
+        "compression_ratio": 8.487179487179487,
+        "no_speech_prob": 0.7925037741661072
+    },
+    {
+        "id": 5,
+        "seek": 0,
+        "start": 10.0,
+        "end": 12.0,
+        "text": " 1 kg of chicken breast",
+        "tokens": [
+            50865,
+            502,
+            15696,
+            295,
+            4662,
+            9934,
+            50965
+        ],
+        "temperature": 0.0,
+        "avg_logprob": -0.27580956545743074,
+        "compression_ratio": 8.487179487179487,
+        "no_speech_prob": 0.7925037741661072
+    },
+    {
+        "id": 6,
+        "seek": 0,
+        "start": 12.0,
+        "end": 14.0,
+        "text": " 1 kg of chicken breast",
+        "tokens": [
+            50965,
+            502,
+            15696,
+            295,
+            4662,
+            9934,
+            51065
+        ],
+        "temperature": 0.0,
+        "avg_logprob": -0.27580956545743074,
+        "compression_ratio": 8.487179487179487,
+        "no_speech_prob": 0.7925037741661072
+    },
+    {
+        "id": 7,
+        "seek": 0,
+        "start": 14.0,
+        "end": 16.0,
+        "text": " 1 kg of chicken breast",
+        "tokens": [
+            51065,
+            502,
+            15696,
+            295,
+            4662,
+            9934,
+            51165
+        ],
+        "temperature": 0.0,
+        "avg_logprob": -0.27580956545743074,
+        "compression_ratio": 8.487179487179487,
+        "no_speech_prob": 0.7925037741661072
+    },
+    {
+        "id": 8,
+        "seek": 0,
+        "start": 16.0,
+        "end": 18.0,
+        "text": " 1 kg of chicken breast",
+        "tokens": [
+            51165,
+            502,
+            15696,
+            295,
+            4662,
+            9934,
+            51265
+        ],
+        "temperature": 0.0,
+        "avg_logprob": -0.27580956545743074,
+        "compression_ratio": 8.487179487179487,
+        "no_speech_prob": 0.7925037741661072
+    },
+    {
+        "id": 9,
+        "seek": 0,
+        "start": 18.0,
+        "end": 20.0,
+        "text": " 1 kg of chicken breast",
+        "tokens": [
+            51265,
+            502,
+            15696,
+            295,
+            4662,
+            9934,
+            51365
+        ],
+        "temperature": 0.0,
+        "avg_logprob": -0.27580956545743074,
+        "compression_ratio": 8.487179487179487,
+        "no_speech_prob": 0.7925037741661072
+    },
+    {
+        "id": 10,
+        "seek": 0,
+        "start": 20.0,
+        "end": 22.0,
+        "text": " 1 kg of chicken breast",
+        "tokens": [
+            51365,
+            502,
+            15696,
+            295,
+            4662,
+            9934,
+            51465
+        ],
+        "temperature": 0.0,
+        "avg_logprob": -0.27580956545743074,
+        "compression_ratio": 8.487179487179487,
+        "no_speech_prob": 0.7925037741661072
+    },
+    {
+        "id": 11,
+        "seek": 0,
+        "start": 22.0,
+        "end": 24.0,
+        "text": " 1 kg of chicken breast",
+        "tokens": [
+            51465,
+            502,
+            15696,
+            295,
+            4662,
+            9934,
+            51565
+        ],
+        "temperature": 0.0,
+        "avg_logprob": -0.27580956545743074,
+        "compression_ratio": 8.487179487179487,
+        "no_speech_prob": 0.7925037741661072
+    },
+    {
+        "id": 12,
+        "seek": 0,
+        "start": 24.0,
+        "end": 26.0,
+        "text": " 1 kg of chicken breast",
+        "tokens": [
+            51565,
+            502,
+            15696,
+            295,
+            4662,
+            9934,
+            51665
+        ],
+        "temperature": 0.0,
+        "avg_logprob": -0.27580956545743074,
+        "compression_ratio": 8.487179487179487,
+        "no_speech_prob": 0.7925037741661072
+    },
+    {
+        "id": 13,
+        "seek": 0,
+        "start": 26.0,
+        "end": 28.0,
+        "text": " 1 kg of chicken breast",
+        "tokens": [
+            51665,
+            502,
+            15696,
+            295,
+            4662,
+            9934,
+            51765
+        ],
+        "temperature": 0.0,
+        "avg_logprob": -0.27580956545743074,
+        "compression_ratio": 8.487179487179487,
+        "no_speech_prob": 0.7925037741661072
+    }
+]

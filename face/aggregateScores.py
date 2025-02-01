@@ -1,5 +1,5 @@
 # aggregate_scores.py
-import os
+from sys import argv
 import json
 import cv2
 
@@ -55,6 +55,6 @@ def aggregate_scores(scores_file, video_path, output_file, fps_override=None):
 
 if __name__ == '__main__':
     scores_file = "face_scores.json"
-    video_path = "clip.mp4"
+    video_path = argv[1]
     output_file = "scored_intervals.txt"
     aggregate_scores(scores_file, video_path, output_file)

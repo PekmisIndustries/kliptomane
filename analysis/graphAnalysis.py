@@ -50,6 +50,27 @@ with open(textResultsPath, "r") as textf:
                 break
             
 
+faceResultsPath = "../face/scored_intervals.txt"
+
+with open(faceResultsPath, "r") as facef:
+    content = facef.readlines()
+    faceAxisGraph = []
+    faceOrdinateGraph = []
+    for i in range(len(content)): #i is the second we're working on
+
+        faceAxisGraph.append(i)
+        lineScore = ""
+        currentLine = content[i]
+
+        for j in currentLine:
+            if not j == ",":
+                lineScore += j 
+            else:
+                faceOrdinateGraph.append(float(lineScore))
+                break
+
+
+
 averageAxisGraph = []
 averageOrdinateGraph = []
 
@@ -61,7 +82,8 @@ for k in range(max_length):
         averageAxisGraph.append(k)
         audio_score = audioOrdinateGraph[k] if k < len(audioOrdinateGraph) else 0
         text_score = textOrdinateGraph[k // 2] if k // 2 < len(textOrdinateGraph) else 0
-        averageOrdinateGraph.append((audio_score + text_score) / 2)
+        face_score = faceOrdinateGraph[k] if k < len(faceOrdinateGraph) else 0
+        averageOrdinateGraph.append((audio_score + 2*text_score + 2.5*face_score) / 5.5) # modifier les coeffs
 
 # Clear out range
 textAxisGraph = textAxisGraph[:max(audioAxisGraph) // 2+1]
@@ -84,8 +106,9 @@ plt.xlabel('Temps', color='white')
 plt.ylabel('Scores', color='white')
 plt.title('Intérêt par temps', color='white')
 
-plt.plot(audioAxisGraph, audioOrdinateGraph, label='Scores Audio', color='mediumorchid', marker='o', linestyle='-', linewidth=thickness, markersize=marker_size)
+plt.plot(audioAxisGraph, audioOrdinateGraph, label='Audio', color='mediumorchid', marker='o', linestyle='-', linewidth=thickness, markersize=marker_size)
 plt.plot(textAxisGraph, textOrdinateGraph, label='Transcription', color='dodgerblue', marker='o', linestyle='-', linewidth=thickness, markersize=marker_size)
+plt.plot(faceAxisGraph, faceOrdinateGraph, label='Visage', color='springgreen', marker='o', linestyle='-', linewidth=thickness, markersize=marker_size)
 plt.plot(averageAxisGraph, averageOrdinateGraph, label='Moyenne', color='pink', marker='o', linestyle='-', linewidth=3.5, markersize=marker_size)
 plt.xlim(0, min(len(textAxisGraph) * 2, len(audioAxisGraph)))
 plt.grid(True)

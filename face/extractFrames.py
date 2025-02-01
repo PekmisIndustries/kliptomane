@@ -1,6 +1,7 @@
 # extract_frames.py
 import cv2
 import os
+from sys import argv
 
 def extract_frames(video_path, output_folder):
     """Extrait toutes les frames d'une vidéo et les enregistre sous forme d'images.
@@ -12,7 +13,7 @@ def extract_frames(video_path, output_folder):
     
     cap = cv2.VideoCapture(video_path)
     if not cap.isOpened():
-        print("Erreur lors de l'ouverture de la vidéo.")
+        print("Erreur lors de l'ouverture de la vidéo. extractFrames")
         return None
 
     fps = cap.get(cv2.CAP_PROP_FPS)
@@ -34,6 +35,6 @@ def extract_frames(video_path, output_folder):
     return fps
 
 if __name__ == '__main__':
-    video_path = "clip.mp4"
+    video_path = argv[1]
     output_folder = os.path.join("temp_image", "extracted")
     extract_frames(video_path, output_folder)

@@ -1,63 +1,71 @@
-print("librairies > importation > début")
+#!/usr/bin/env python
+"""
+Script 1 : Extraction de l’audio et transcription avec Whisper
+Usage (en ligne de commande) : 
+    python transcribe_audio.py [chemin_vers_video]
+Si aucun argument n’est fourni, le script utilise "clip.mp4" dans le dossier courant.
+La transcription est sauvegardée dans "transcription.json" et "transcription.txt".
+"""
+
 import time
-start_time = time.time()
+import threading
+import sys
+import os
+import json
 from moviepy.editor import VideoFileClip, AudioFileClip
 import whisper
-import os
-import sys
-import torch
-import threading
 
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+print("librairies > importation > début")
+start_time = time.time()
 print("librairies > importation > fin")
 print(f"Temps : {time.time() - start_time:.2f} secondes\n")
 last_time = time.time()
 
+# Variable globale pour la progress bar
 done = False
 
-# Simple progress bar utility
+# === UTILITAIRE : Barre de progression ===
 def progress_bar(current, total, bar_length=100):
     fraction = current / total
-    fraction = min(max(fraction, 0.0), 1.0)  # clamp between 0 and 1
+    fraction = min(max(fraction, 0.0), 1.0)  # Contraindre entre 0 et 1
     arrow_count = int(fraction * bar_length - 1)
     if arrow_count < 0:
         arrow_count = 0
     arrow = '=' * arrow_count + '>'
     padding = ' ' * (bar_length - len(arrow))
-    percent = round(fraction * 100,2)
+    percent = round(fraction * 100, 2)
     sys.stdout.write(f"\r[{arrow}{padding}] {percent}%")
     sys.stdout.flush()
 
-# A separate thread that increments the progress bar based on an estimated duration
 def progress_bar_thread(estimated_time, poll_interval):
     start = time.time()
     while not done:
         elapsed = time.time() - start
         fraction = elapsed / estimated_time
-        progress_bar(fraction, 1)  # use fraction as 'current' vs 1 as 'total'
+        progress_bar(fraction, 1)  # On considère 1 comme total pour utiliser la fraction directement
         if fraction >= 1.0:
             break
         time.sleep(poll_interval)
-    # Make sure we end at 100%
     progress_bar(1, 1)
     print()
 
-
-# Function to extract audio from video
+# === FONCTIONS D'EXTRACTION ET DE TRANSCRIPTION ===
 def extract_audio_from_video(video_path, output_audio_path):
+    print("Extraction de l'audio depuis la vidéo...")
     video = VideoFileClip(video_path)
     audio = video.audio
     audio.write_audiofile(output_audio_path)
     video.close()
+    print("Audio extrait.")
 
-# Function to transcribe audio using Whisper
 def transcribe_audio(audio_path, model_name):
-    print(f"chargement du modèle > début")
-    print(f"chargement du modèle > [{model_name}]")
+    print(f"Chargement du modèle Whisper > début")
+    print(f"Chargement du modèle Whisper > [{model_name}]")
     model = whisper.load_model(model_name)
-    print("chargement du modèle > fin")
-    print("modele > traitement")
+    print("Chargement du modèle Whisper > fin")
+    print("Transcription en cours...")
 
+    # Estimation de la durée de transcription (l'estimation dépend du modèle et de la durée de l'audio)
     audio_clip = AudioFileClip(audio_path)
     audio_duration_sec = audio_clip.duration
     audio_clip.close()
@@ -69,8 +77,7 @@ def transcribe_audio(audio_path, model_name):
         time_factor = 1.5
     estimated_time = audio_duration_sec * time_factor / 8.0
     progress_thread = threading.Thread(target=progress_bar_thread, args=(estimated_time, 0.1))
-    print("modele > traitement > estimé >", round( estimated_time ,0), "secondes")
-    print("modele > traitement > note que l'estimation varie avec le matériel, le modèle et la durée de l'entrée")
+    print("Transcription estimée :", round(estimated_time, 0), "secondes")
     progress_thread.start()
 
     result = model.transcribe(audio_path)
@@ -81,127 +88,50 @@ def transcribe_audio(audio_path, model_name):
     time.sleep(1)
     return result["segments"]
 
-# Function to save transcription with timestamps to a text file
-def save_transcription(segments, output_file):
-    with open(output_file, "w") as f:
+def save_transcription_json(segments, output_json_file):
+    with open(output_json_file, "w", encoding="utf-8") as f:
+        json.dump(segments, f, indent=4, ensure_ascii=False)
+    print(f"Transcription sauvegardée dans {output_json_file}")
+
+def save_transcription_text(segments, output_txt_file):
+    with open(output_txt_file, "w", encoding="utf-8") as f:
         for segment in segments:
-            start_time = segment["start"]
-            end_time = segment["end"]
+            start_seg = segment["start"]
+            end_seg = segment["end"]
             text = segment["text"]
-            f.write(f"[{start_time:.2f} - {end_time:.2f}] {text}\n")
+            f.write(f"[{start_seg:.2f} - {end_seg:.2f}] {text}\n")
+    print(f"Transcription texte sauvegardée dans {output_txt_file}")
 
+# === MAIN ===
+if __name__ == '__main__':
+    # Récupération du chemin de la vidéo (argument en ligne de commande ou valeur par défaut)
+    if len(sys.argv) > 1:
+        video_path = sys.argv[1]
+    else:
+        video_path = "../clip.mp4"  # Fichier vidéo par défaut
 
-def load_nllb():
-    local_model = "translation/models--facebook--nllb-200-distilled-600M"
+    audio_path = "temp_audio.wav"
+    output_json_file = "transcription.json"
+    output_txt_file = "transcription.txt"
+    model_name = "large"  # Options possibles : tiny, base, small, medium, large
 
-    tokenizer = AutoTokenizer.from_pretrained(local_model)
-    
-    # Chargement optimisé en 8-bit (réduit la consommation VRAM)
-    model = AutoModelForSeq2SeqLM.from_pretrained(
-        local_model, 
-        torch_dtype=torch.float16,  # Réduit la mémoire et accélère sur RTX 3080
-        device_map="auto"  # Envoie automatiquement sur le GPU
-    )
+    # Étape 1 : Extraire l'audio
+    extract_audio_from_video(video_path, audio_path)
+    print(f"Temps après extraction audio : {time.time() - last_time:.2f} secondes\n")
+    last_time = time.time()
 
-    return model, tokenizer
+    # Étape 2 : Transcrire l'audio avec Whisper
+    segments = transcribe_audio(audio_path, model_name)
+    print("Transcription terminée.")
+    print(f"Temps après transcription : {time.time() - last_time:.2f} secondes\n")
+    last_time = time.time()
 
-def translate_nllb(sentences, model, tokenizer, src_lang="fra_Latn", tgt_lang="eng_Latn", batch_size=1):
-    """ Traduit une liste de phrases en lot (batch) pour accélérer la traduction """
-    translated_texts = []
-    
-    for i in range(0, len(sentences), batch_size):
+    # Étape 3 : Sauvegarder la transcription (JSON et texte)
+    save_transcription_json(segments, output_json_file)
+    save_transcription_text(segments, output_txt_file)
 
-        batch = sentences[i:i + batch_size]
-        
-        if(batch[0] != "agreagreagreagre"):
-            print("modele > traduit : ",batch)
+    # Nettoyage du fichier audio temporaire
+    if os.path.exists(audio_path):
+        os.remove(audio_path)
 
-
-        # Vérifie que le batch n'est pas vide
-        if not batch or all(not text.strip() for text in batch or batch[0] == "agreagreagreagre"):  # ✅ Évite de traduire un batch vide
-            continue
-        
-        inputs = tokenizer(batch, return_tensors="pt", padding=True, truncation=True).to("cuda")
-        model.to("cuda")
-        
-        with torch.no_grad():  # Désactive le calcul des gradients pour accélérer
-            translated = model.generate(**inputs, forced_bos_token_id=tokenizer.convert_tokens_to_ids(tgt_lang))
-
-        translated_texts.extend(tokenizer.batch_decode(translated, skip_special_tokens=True))
-    
-    return translated_texts
-
-def clean_text(text):
-    cleanSegments = []
-    for segment in segments:
-        #replace '...' with ''
-        text = segment["text"]
-        if text == " ...":
-            text = "agreagreagreagre"
-        cleanSegments.append({"start": segment["start"], "end": segment["end"], "text": text})
-
-    # for segment in cleanSegments:
-    #     print(segment['text'])
-    
-    return cleanSegments
-
-
-
-# Paths and parameters
-# video_path = "clip.mp4"  # Replace with your video path
-video_path = "bigclip.mp4"
-audio_path = "temp_audio.wav"
-output_file = "transcription.txt"
-model_name = "large"  # Whisper model size: tiny, base, small, medium, large
-
-# Step 1: Extract audio
-print("Isolement de l'audio")
-extract_audio_from_video(video_path, audio_path)
-print("Audio extrait")
-
-print(f"Temps : {time.time() - last_time:.2f} secondes\n")
-last_time = time.time()
-
-# Step 2: Transcribe audio
-print("Transcription des voix")
-segments = transcribe_audio(audio_path, model_name)
-print("Voix transcrites")
-
-print(f"Temps : {time.time() - last_time:.2f} secondes\n")
-last_time = time.time()
-
-# Step 3: Clean and normalize text
-segments = clean_text(segments)
-
-# Step 4: Translate transcription
-model, tokenizer = load_nllb()
-sentences = [segment["text"] for segment in segments]
-translated_texts = translate_nllb(sentences, model, tokenizer)
-
-print(f"Temps : {time.time() - last_time:.2f} secondes\n")
-last_time = time.time()
-
-#print translated texts
-for i, text in enumerate(translated_texts):
-    segments[i]["text"] = text
-
-# Step 5: Clean and normalize text
-for segment in segments:
-    text = segment["text"]
-    if text == "the agreement":
-        text = "PEKMIGNORE"
-    segment["text"] = text
-
-# Step 6: Save transcription
-save_transcription(segments, output_file)
-
-# Clean up temporary audio file
-if os.path.exists(audio_path):
-    os.remove(audio_path)
-
-
-
-
-print(f"Transcription terminée > {output_file}")
-print(f"Temps total : {time.time() - start_time:.2f} secondes")
-time.sleep(5)
+    print(f"Transcription complète. Temps total : {time.time() - start_time:.2f} secondes")

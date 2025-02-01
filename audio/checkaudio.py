@@ -2,6 +2,7 @@ from moviepy.editor import VideoFileClip
 import librosa
 import numpy as np
 import os
+from sys import argv
 
 # Function to extract audio from video
 def extract_audio_from_video(video_path, output_audio_path):
@@ -74,8 +75,7 @@ def save_scores_to_file(scored_segments, output_file):
             f.write(f"{time:.2f}, {score}\n")
 
 # Paths and parameters
-# video_path = "clip.mp4"
-video_path = "bigclip.mp4"
+video_path = argv[1]
 audio_path = "temp_audio.wav"
 output_file = "scored_segments.txt"
 threshold_variation = 0.4 

@@ -1,43 +1,14 @@
-[0.00 - 2.00] PEKMIGNORE
-[2.00 - 4.00] PEKMIGNORE
-[4.00 - 6.00] Ah , but you 're there !
-[6.00 - 8.00] PEKMIGNORE
-[8.00 - 10.00] Oh, I'm angry with him, it's a laughing rage.
-[10.00 - 12.00] But you think you 're taking your gossip ?
-[12.00 - 14.00] You'll see that it's going to be a TikTok rigolo.
-[14.00 - 16.00] PEKMIGNORE
-[16.00 - 18.00] I'm angry with the morgue, the death of laughter.
-[18.00 - 20.00] Look at your laugh !
-[20.00 - 22.00] Ah, that's why it's really exciting.
-[22.00 - 24.00] I'm a tendon.
-[24.00 - 26.00] PEKMIGNORE
-[26.00 - 28.00] I'm doing the right thing.
-[28.00 - 30.00] PEKMIGNORE
-[30.00 - 32.00] PEKMIGNORE
-[32.00 - 34.00] PEKMIGNORE
-[34.00 - 36.00] Yeah, they're too strong for the people too.
-[36.00 - 38.00] I was the one who was strong.
-[38.00 - 40.00] I wasn't expecting it, what's that coming from?
-[40.00 - 42.00] But they're gonna have a schoolboy down there.
-[42.00 - 44.00] Those who live in the basement.
-[44.00 - 46.00] No, it's not because you're saying it all the time.
-[46.00 - 48.00] You are my son.
-[48.00 - 50.00] PEKMIGNORE
-[50.00 - 52.00] PEKMIGNORE
-[52.00 - 54.00] PEKMIGNORE
-[54.00 - 56.00] PEKMIGNORE
-[56.00 - 58.00] PEKMIGNORE
-[58.00 - 60.00] PEKMIGNORE
-[60.00 - 62.00] PEKMIGNORE
-[62.00 - 64.00] PEKMIGNORE
-[64.00 - 66.00] Oh, the rhythm of the one who is violent.
-[66.00 - 68.00] It's my life, that's why I...
-[68.00 - 70.00] PEKMIGNORE
-[70.00 - 72.00] PEKMIGNORE
-[72.00 - 74.00] PEKMIGNORE
-[74.00 - 76.00] PEKMIGNORE
-[76.00 - 78.00] PEKMIGNORE
-[78.00 - 80.00] PEKMIGNORE
-[80.00 - 82.00] PEKMIGNORE
-[82.00 - 84.00] PEKMIGNORE
-[84.00 - 86.00] PEKMIGNORE
+[0.00 - 2.00] 1.5 kg of chicken breast
+[2.00 - 4.00] 1.5 kg of chicken breast
+[4.00 - 6.00] 1.5 kg of chicken breast
+[6.00 - 8.00] 1.5 kg of chicken breast
+[8.00 - 10.00] 1.5 kg of chicken breast
+[10.00 - 12.00] 1 kg of chicken breast
+[12.00 - 14.00] 1 kg of chicken breast
+[14.00 - 16.00] 1 kg of chicken breast
+[16.00 - 18.00] 1 kg of chicken breast
+[18.00 - 20.00] 1 kg of chicken breast
+[20.00 - 22.00] 1 kg of chicken breast
+[22.00 - 24.00] 1 kg of chicken breast
+[24.00 - 26.00] 1 kg of chicken breast
+[26.00 - 28.00] 1 kg of chicken breast
